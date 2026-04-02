@@ -65,5 +65,4 @@ export interface SwipeRecord {
 
 export interface AppState {
   swipeRecords: SwipeRecord[];
-  apiKey: string;
 }

@@ -5,10 +5,23 @@ import type { CinderProject, AppState, SwipeRecord } from "./types";
 
 // ── Config ──────────────────────────────────────────────────────────────────
 
-const PORT      = parseInt(process.env.PORT ?? "4242", 10);
-const DATA_FILE = process.env.DATA_FILE ?? "/data/state.json";
+const PORT          = parseInt(process.env.PORT ?? "4242", 10);
+const DATA_FILE     = process.env.DATA_FILE ?? "/data/state.json";
+const TAILSCALE_URL = process.env.CINDER_TAILSCALE_URL ?? "https://<your-host>.ts.net:8445";
 
 // ── State ────────────────────────────────────────────────────────────────────
+
+// API key lives in CINDER_API_KEY env var — never in state.json.
+// state.json only holds swipe records and is safe to commit to git.
+function resolveApiKey(): string {
+  const envKey = process.env.CINDER_API_KEY;
+  if (envKey) return envKey;
+  // Fallback: generate, print clearly, require user to set it
+  const generated = "cinder-" + crypto.randomUUID().toLowerCase().slice(0, 20);
+  console.warn(`\n⚠  CINDER_API_KEY not set. Generated for this session: ${generated}`);
+  console.warn(`   Set it permanently: export CINDER_API_KEY=${generated}\n`);
+  return generated;
+}
 
 function loadState(): AppState {
   try {
@@ -16,8 +29,7 @@ function loadState(): AppState {
       return JSON.parse(readFileSync(DATA_FILE, "utf8")) as AppState;
     }
   } catch {}
-  const key = "cinder-" + crypto.randomUUID().toLowerCase().slice(0, 20);
-  const state: AppState = { swipeRecords: [], apiKey: key };
+  const state: AppState = { swipeRecords: [] };
   saveState(state);
   return state;
 }
@@ -27,6 +39,7 @@ function saveState(state: AppState): void {
 }
 
 let state = loadState();
+const API_KEY = resolveApiKey();
 let projectCache: CinderProject[] = [];
 let cacheTs = 0;
 const CACHE_TTL = 5 * 60 * 1000; // 5 min
@@ -65,7 +78,7 @@ function checkAuth(req: Request): boolean {
   const bearer = req.headers.get("authorization")?.replace("Bearer ", "");
   const hdr    = req.headers.get("x-cinder-key");
   const query  = new URL(req.url).searchParams.get("key");
-  return bearer === state.apiKey || hdr === state.apiKey || query === state.apiKey;
+  return bearer === API_KEY || hdr === API_KEY || query === API_KEY;
 }
 
 // ── Response helpers ─────────────────────────────────────────────────────────
@@ -233,7 +246,7 @@ function handleLlmsTxt(): Response {
   return plainText(`# Cinder API — LLM Reference
 Generated: ${new Date().toISOString()}
 Base URL (local):    http://0.0.0.0:${PORT}
-Base URL (Tailscale): https://weixiangs-mac-mini.tail1ef495.ts.net:8445
+Base URL (Tailscale): ${TAILSCALE_URL}
 
 ## What is Cinder?
 Cinder is a macOS SwiftUI app that tracks unfinished dev projects by heat level (git activity).
@@ -378,7 +391,7 @@ function handleLlmsMiniTxt(): Response {
 
   return plainText(`# Cinder API — iOS Shortcuts Quick Reference
 Base (local):    http://0.0.0.0:${PORT}/api
-Base (Tailscale): https://weixiangs-mac-mini.tail1ef495.ts.net:8445/api
+Base (Tailscale): ${TAILSCALE_URL}/api
 Auth (POST only): header X-Cinder-Key or ?key=YOUR_KEY
 
 ## Key Endpoints (GET = no auth needed)
@@ -484,7 +497,7 @@ console.log(`
 ║  🔥  Cinder API                          ║
 ║  Port    : ${PORT}                          ║
 ║  Projects: ${process.env.PROJECTS_DIR ?? "/projects"}  ║
-║  API Key : ${state.apiKey}  ║
+║  API Key : ${API_KEY}  ║
 ╚══════════════════════════════════════════╝
 `);
 console.log(`GET  http://0.0.0.0:${PORT}/api/health`);

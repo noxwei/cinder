@@ -9,7 +9,11 @@ struct APIStatusView: View {
     @State private var copiedURL: String? = nil
 
     private var localURL: String     { "http://localhost:\(CinderAPIServer.port)" }
-    private var tailscaleURL: String { "http://100.71.141.45:\(CinderAPIServer.port)" }
+    // Set CINDER_TAILSCALE_URL in your environment for remote access via Tailscale
+    private var tailscaleURL: String {
+        ProcessInfo.processInfo.environment["CINDER_TAILSCALE_URL"]
+            ?? "http://localhost:\(CinderAPIServer.port)"
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {

@@ -9,7 +9,10 @@ DerivedData/
 build/
 .build/
 
-# Docker data (has API key — don't commit)
+# Secrets
+.env
+
+# Docker data volume (swipe records — commit manually if desired)
 data/
 
 # Node
