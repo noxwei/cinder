@@ -1,0 +1,74 @@
+name: Cinder
+options:
+  bundleIdPrefix: dev.bythewei
+  deploymentTarget:
+    macOS: "26.0"
+  xcodeVersion: "26.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MACOSX_DEPLOYMENT_TARGET: "26.0"
+
+targets:
+  Cinder:
+    type: application
+    platform: macOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Sources/Cinder
+    dependencies:
+      - target: CinderWidgets
+    settings:
+      base:
+        PRODUCT_NAME: Cinder
+        PRODUCT_BUNDLE_IDENTIFIER: dev.bythewei.cinder
+        MACOSX_DEPLOYMENT_TARGET: "26.0"
+        INFOPLIST_FILE: Sources/Cinder/Info.plist
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_PREVIEWS: YES
+        SWIFT_VERSION: "6.0"
+        SWIFT_EMIT_LOC_STRINGS: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    entitlements:
+      path: Sources/Cinder/Cinder.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
+        com.apple.security.files.user-selected.read-write: true
+
+  CinderWidgets:
+    type: app-extension
+    platform: macOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: WidgetExtension
+    settings:
+      base:
+        PRODUCT_NAME: CinderWidgets
+        PRODUCT_BUNDLE_IDENTIFIER: dev.bythewei.cinder.widgets
+        MACOSX_DEPLOYMENT_TARGET: "26.0"
+        INFOPLIST_FILE: WidgetExtension/Info.plist
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_VERSION: "6.0"
+        APPLICATION_EXTENSION_API_ONLY: NO
+    entitlements:
+      path: WidgetExtension/CinderWidgets.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.network.client: true
+
+schemes:
+  Cinder:
+    build:
+      targets:
+        Cinder: all
+        CinderWidgets: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

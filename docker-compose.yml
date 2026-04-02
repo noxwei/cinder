@@ -1,0 +1,26 @@
+services:
+  cinder-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cinder-api
+    restart: unless-stopped
+    ports:
+      - "4242:4242"
+    volumes:
+      # Mount your projects directory (read-only — API only reads, never writes)
+      - ~/Local_Dev/projects:/projects:ro
+      # Persistent data: api key + swipe records survive restarts
+      - cinder-data:/data
+    environment:
+      - PORT=4242
+      - PROJECTS_DIR=/projects
+      - DATA_FILE=/data/state.json
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4242/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  cinder-data:

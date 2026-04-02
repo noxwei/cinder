@@ -1,0 +1,23 @@
+# Xcode
+*.xcuserstate
+xcuserdata/
+DerivedData/
+*.xcworkspace/xcuserdata/
+*.xcbkptlist
+
+# Build
+build/
+.build/
+
+# Docker data (has API key — don't commit)
+data/
+
+# Node
+node_modules/
+*.bundle.js.map
+
+# macOS
+.DS_Store
+
+# Claude
+.claudedocs/logs/

@@ -1,0 +1,646 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01486B969E908031E5A1FE31 /* ClaudeSkillsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7DDF02545817891E946579 /* ClaudeSkillsService.swift */; };
+		021F9DAF775E6CF3E2F9BAC0 /* LargeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980066864950DFA22C895093 /* LargeWidget.swift */; };
+		0BAA53DAF7A26297401311E2 /* GraveyardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2C37C6675221729E6AB612 /* GraveyardWidget.swift */; };
+		14C7C0F1F06BA4E686230B00 /* WidgetModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5DEC72F52CAED05542BB3D /* WidgetModels.swift */; };
+		2AFD78D6888FAED09107DE1E /* CinderMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD52F412BA7C8D14860ABD8 /* CinderMenuBar.swift */; };
+		2D140EF9C054EC8C2DFC20DD /* ProjectCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4D491DC8E06260551B25C /* ProjectCardView.swift */; };
+		385A1AE447D44EFF2C915F4D /* ReignitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF62866286AFB542499654F2 /* ReignitionView.swift */; };
+		38B5F6A419FA629D72644735 /* SharedProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE17938D75A350F2BC05E862 /* SharedProvider.swift */; };
+		3A9408B841C7230547E1A190 /* GraveyardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D8B006173300699CED58F8 /* GraveyardView.swift */; };
+		3C481866A75C95B9122CF448 /* StatsBarWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADB0FB568C2887C94EBFDE /* StatsBarWidget.swift */; };
+		3CB803DCAE97FB578585D267 /* CinderAPIServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD70C4937EB1AEDE1A75E24 /* CinderAPIServer.swift */; };
+		76E27630E71DC80344A5EE45 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A9FA32414442F942CD9DB /* View+Extensions.swift */; };
+		78D04B76E464DBA17C80B36C /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2456C42BF2D9D4592102370 /* StatsView.swift */; };
+		811F73836A162074EFC3ED24 /* WidgetAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BBB314A5FDD96AE355E79F /* WidgetAPIClient.swift */; };
+		8EA932A04E12F9EFD858D362 /* ProjectScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29531EC67310B8C9C51DEE79 /* ProjectScanner.swift */; };
+		93B506AA5D4C64B958E5F4D8 /* CinderTrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E33BE1AB2B15BF2D7C0341 /* CinderTrayView.swift */; };
+		96C5C750E21F602AE843F811 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F74E6CBDE00C47B2469F12 /* ContentView.swift */; };
+		9A444081DF1CD1DDEF2AB814 /* CinderWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85842F9CC47C6DFFEE408B6A /* CinderWidgetBundle.swift */; };
+		9E35C071692AE570F3C2E71E /* APIStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F66099061EC85F951C5CC19 /* APIStatusView.swift */; };
+		A96B0DB0546C315FA2BDB2A4 /* GitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982CBF8C73BA345CB17D7D17 /* GitService.swift */; };
+		AA705449BE79F692FAF650ED /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C08679BE34F521A5D0AB78C /* CardStackView.swift */; };
+		ADDE5A370099EAF3B47CBFCC /* GitTreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6B64BD66B2C6F654372723 /* GitTreeService.swift */; };
+		B7FA38A9ED5E7BF7F151A7F8 /* CinderWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B3CB90AB3DC26037C9E53829 /* CinderWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BA6DAF36902B31DC8F8625F8 /* Color+Cinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AA4197646CD16624828033 /* Color+Cinder.swift */; };
+		BB60F104655F81C52C874477 /* SmallWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F86AD6D9146DE562621E97 /* SmallWidget.swift */; };
+		C70591D61C5187FC5F7B1E97 /* MediumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BC39A48B62749A0CEA3A57 /* MediumWidget.swift */; };
+		D7CEBC8134E7D56E4BDDB7D6 /* GitTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B9C07D7CB30ACB95AC37B3 /* GitTreeView.swift */; };
+		D9ECE64CDD2D06B80E12F103 /* CinderProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7392B4E2A620DA398161788B /* CinderProject.swift */; };
+		DA9DF209234674FF6F1FD374 /* CinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CC231326DFAC8EA31EDDF0 /* CinderApp.swift */; };
+		E0F3374B87BEB698AC45C2D6 /* pretext.bundle.js in Resources */ = {isa = PBXBuildFile; fileRef = 0A8EFC44D1ACCF562BBA596B /* pretext.bundle.js */; };
+		E27CE973CB2992EBE5EE2739 /* ThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB07C3FF6CAD464B860FFB0 /* ThemePickerView.swift */; };
+		EC73901E644A88360419294E /* SwipeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1685847F0068E30FB86FF2 /* SwipeRecord.swift */; };
+		EFF13022C9343722E16B27AB /* CinderTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB04CEFD43AEA5313A21AE0 /* CinderTheme.swift */; };
+		F61E76A022C2E77DF2F82027 /* APIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF588910A1F4FA6494A9294A /* APIModels.swift */; };
+		F720E49891801082684BB78E /* NudgeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F52851D6DD16614C3BF2D /* NudgeWidget.swift */; };
+		FBAE94E5C30527E6078BA4AF /* CardStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0694C70D721F728B7DBD75 /* CardStackViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A7E235987B9ECF94ACCC9150 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 95F532B457929822AE8AC118 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5D73CC81DE3ADD05CB708A4B;
+			remoteInfo = CinderWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8296BB9F0453FB95CB8B7480 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B7FA38A9ED5E7BF7F151A7F8 /* CinderWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0A8EFC44D1ACCF562BBA596B /* pretext.bundle.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = pretext.bundle.js; sourceTree = "<group>"; };
+		0D5DEC72F52CAED05542BB3D /* WidgetModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetModels.swift; sourceTree = "<group>"; };
+		0DB07C3FF6CAD464B860FFB0 /* ThemePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerView.swift; sourceTree = "<group>"; };
+		0F66099061EC85F951C5CC19 /* APIStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStatusView.swift; sourceTree = "<group>"; };
+		102892FE91E0B3B70B1748A5 /* Cinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		17AA4197646CD16624828033 /* Color+Cinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Cinder.swift"; sourceTree = "<group>"; };
+		1C08679BE34F521A5D0AB78C /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
+		21B9C07D7CB30ACB95AC37B3 /* GitTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitTreeView.swift; sourceTree = "<group>"; };
+		29531EC67310B8C9C51DEE79 /* ProjectScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectScanner.swift; sourceTree = "<group>"; };
+		2C33ACD9FCB8490AC59BB9DA /* CinderWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CinderWidgets.entitlements; sourceTree = "<group>"; };
+		2CB04CEFD43AEA5313A21AE0 /* CinderTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinderTheme.swift; sourceTree = "<group>"; };
+		2D0694C70D721F728B7DBD75 /* CardStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackViewModel.swift; sourceTree = "<group>"; };
+		3B6B64BD66B2C6F654372723 /* GitTreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitTreeService.swift; sourceTree = "<group>"; };
+		3CDEEE0A84E59672C24BB422 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		45E33BE1AB2B15BF2D7C0341 /* CinderTrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinderTrayView.swift; sourceTree = "<group>"; };
+		4AD70C4937EB1AEDE1A75E24 /* CinderAPIServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinderAPIServer.swift; sourceTree = "<group>"; };
+		57D8B006173300699CED58F8 /* GraveyardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveyardView.swift; sourceTree = "<group>"; };
+		7392B4E2A620DA398161788B /* CinderProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinderProject.swift; sourceTree = "<group>"; };
+		84F74E6CBDE00C47B2469F12 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		85842F9CC47C6DFFEE408B6A /* CinderWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinderWidgetBundle.swift; sourceTree = "<group>"; };
+		980066864950DFA22C895093 /* LargeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeWidget.swift; sourceTree = "<group>"; };
+		982CBF8C73BA345CB17D7D17 /* GitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitService.swift; sourceTree = "<group>"; };
+		9B2C37C6675221729E6AB612 /* GraveyardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraveyardWidget.swift; sourceTree = "<group>"; };
+		A2456C42BF2D9D4592102370 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		ACD52F412BA7C8D14860ABD8 /* CinderMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinderMenuBar.swift; sourceTree = "<group>"; };
+		AE7DDF02545817891E946579 /* ClaudeSkillsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeSkillsService.swift; sourceTree = "<group>"; };
+		B3CB90AB3DC26037C9E53829 /* CinderWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CinderWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4CC231326DFAC8EA31EDDF0 /* CinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinderApp.swift; sourceTree = "<group>"; };
+		BE17938D75A350F2BC05E862 /* SharedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedProvider.swift; sourceTree = "<group>"; };
+		C66A9FA32414442F942CD9DB /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		C6C86F6761EB756E279BEA9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CE5F52851D6DD16614C3BF2D /* NudgeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeWidget.swift; sourceTree = "<group>"; };
+		D2ADB0FB568C2887C94EBFDE /* StatsBarWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsBarWidget.swift; sourceTree = "<group>"; };
+		D4F86AD6D9146DE562621E97 /* SmallWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidget.swift; sourceTree = "<group>"; };
+		E5BC39A48B62749A0CEA3A57 /* MediumWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWidget.swift; sourceTree = "<group>"; };
+		E898DC647F06E20C29739F34 /* Cinder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cinder.entitlements; sourceTree = "<group>"; };
+		ED1685847F0068E30FB86FF2 /* SwipeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeRecord.swift; sourceTree = "<group>"; };
+		EF588910A1F4FA6494A9294A /* APIModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModels.swift; sourceTree = "<group>"; };
+		EF62866286AFB542499654F2 /* ReignitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReignitionView.swift; sourceTree = "<group>"; };
+		F4A4D491DC8E06260551B25C /* ProjectCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCardView.swift; sourceTree = "<group>"; };
+		F8BBB314A5FDD96AE355E79F /* WidgetAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetAPIClient.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1BCB0F3A9937DA07E6C817E3 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				ACD52F412BA7C8D14860ABD8 /* CinderMenuBar.swift */,
+				45E33BE1AB2B15BF2D7C0341 /* CinderTrayView.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		34F2CD4963B0D789FDF17062 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EF588910A1F4FA6494A9294A /* APIModels.swift */,
+				7392B4E2A620DA398161788B /* CinderProject.swift */,
+				ED1685847F0068E30FB86FF2 /* SwipeRecord.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		410D2FC479376DD8FA541CFA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2D0694C70D721F728B7DBD75 /* CardStackViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		41B097F5636397FF461C71DA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4AD70C4937EB1AEDE1A75E24 /* CinderAPIServer.swift */,
+				AE7DDF02545817891E946579 /* ClaudeSkillsService.swift */,
+				982CBF8C73BA345CB17D7D17 /* GitService.swift */,
+				3B6B64BD66B2C6F654372723 /* GitTreeService.swift */,
+				29531EC67310B8C9C51DEE79 /* ProjectScanner.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4D6AF782FC29F1FCC2719E1F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				17AA4197646CD16624828033 /* Color+Cinder.swift */,
+				C66A9FA32414442F942CD9DB /* View+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		65C7592C67DAA465BFBE3EC8 = {
+			isa = PBXGroup;
+			children = (
+				B597B206E0F6A0774FC2D118 /* Sources */,
+				9D985FE4CC61F426FBC50093 /* WidgetExtension */,
+				A1D39B6690934CD6E65F295D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9ABE42FD1B4089885103A94D /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				2CB04CEFD43AEA5313A21AE0 /* CinderTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		9D985FE4CC61F426FBC50093 /* WidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				85842F9CC47C6DFFEE408B6A /* CinderWidgetBundle.swift */,
+				2C33ACD9FCB8490AC59BB9DA /* CinderWidgets.entitlements */,
+				9B2C37C6675221729E6AB612 /* GraveyardWidget.swift */,
+				C6C86F6761EB756E279BEA9D /* Info.plist */,
+				980066864950DFA22C895093 /* LargeWidget.swift */,
+				E5BC39A48B62749A0CEA3A57 /* MediumWidget.swift */,
+				CE5F52851D6DD16614C3BF2D /* NudgeWidget.swift */,
+				BE17938D75A350F2BC05E862 /* SharedProvider.swift */,
+				D4F86AD6D9146DE562621E97 /* SmallWidget.swift */,
+				D2ADB0FB568C2887C94EBFDE /* StatsBarWidget.swift */,
+				F8BBB314A5FDD96AE355E79F /* WidgetAPIClient.swift */,
+				0D5DEC72F52CAED05542BB3D /* WidgetModels.swift */,
+			);
+			path = WidgetExtension;
+			sourceTree = "<group>";
+		};
+		9FF2B57F44AAB6F5FBD3388E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0A8EFC44D1ACCF562BBA596B /* pretext.bundle.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A1D39B6690934CD6E65F295D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				102892FE91E0B3B70B1748A5 /* Cinder.app */,
+				B3CB90AB3DC26037C9E53829 /* CinderWidgets.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B597B206E0F6A0774FC2D118 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C9EE894046ACD50623E6C7B3 /* Cinder */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		BF5612502E6D2FDD03B87715 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0F66099061EC85F951C5CC19 /* APIStatusView.swift */,
+				1C08679BE34F521A5D0AB78C /* CardStackView.swift */,
+				84F74E6CBDE00C47B2469F12 /* ContentView.swift */,
+				21B9C07D7CB30ACB95AC37B3 /* GitTreeView.swift */,
+				57D8B006173300699CED58F8 /* GraveyardView.swift */,
+				F4A4D491DC8E06260551B25C /* ProjectCardView.swift */,
+				EF62866286AFB542499654F2 /* ReignitionView.swift */,
+				A2456C42BF2D9D4592102370 /* StatsView.swift */,
+				0DB07C3FF6CAD464B860FFB0 /* ThemePickerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C9EE894046ACD50623E6C7B3 /* Cinder */ = {
+			isa = PBXGroup;
+			children = (
+				E898DC647F06E20C29739F34 /* Cinder.entitlements */,
+				B4CC231326DFAC8EA31EDDF0 /* CinderApp.swift */,
+				3CDEEE0A84E59672C24BB422 /* Info.plist */,
+				4D6AF782FC29F1FCC2719E1F /* Extensions */,
+				1BCB0F3A9937DA07E6C817E3 /* MenuBar */,
+				34F2CD4963B0D789FDF17062 /* Models */,
+				9FF2B57F44AAB6F5FBD3388E /* Resources */,
+				41B097F5636397FF461C71DA /* Services */,
+				9ABE42FD1B4089885103A94D /* Theme */,
+				410D2FC479376DD8FA541CFA /* ViewModels */,
+				BF5612502E6D2FDD03B87715 /* Views */,
+			);
+			path = Cinder;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5D73CC81DE3ADD05CB708A4B /* CinderWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADE470F86DCB8AF031331DE9 /* Build configuration list for PBXNativeTarget "CinderWidgets" */;
+			buildPhases = (
+				38E5FCA48761717B54990BBC /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CinderWidgets;
+			packageProductDependencies = (
+			);
+			productName = CinderWidgets;
+			productReference = B3CB90AB3DC26037C9E53829 /* CinderWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F334020A84A7C6C9C511726D /* Cinder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 198466E0E8E196C8570FF6E8 /* Build configuration list for PBXNativeTarget "Cinder" */;
+			buildPhases = (
+				D87E80146A3358D9B5F6B148 /* Sources */,
+				12DFAA35BB89A89190334D28 /* Resources */,
+				8296BB9F0453FB95CB8B7480 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CF7CBA21A526580095282183 /* PBXTargetDependency */,
+			);
+			name = Cinder;
+			packageProductDependencies = (
+			);
+			productName = Cinder;
+			productReference = 102892FE91E0B3B70B1748A5 /* Cinder.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		95F532B457929822AE8AC118 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					5D73CC81DE3ADD05CB708A4B = {
+						ProvisioningStyle = Automatic;
+					};
+					F334020A84A7C6C9C511726D = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 8DD0DCA49C5C29DE84AFB994 /* Build configuration list for PBXProject "Cinder" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 65C7592C67DAA465BFBE3EC8;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F334020A84A7C6C9C511726D /* Cinder */,
+				5D73CC81DE3ADD05CB708A4B /* CinderWidgets */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		12DFAA35BB89A89190334D28 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0F3374B87BEB698AC45C2D6 /* pretext.bundle.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		38E5FCA48761717B54990BBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A444081DF1CD1DDEF2AB814 /* CinderWidgetBundle.swift in Sources */,
+				0BAA53DAF7A26297401311E2 /* GraveyardWidget.swift in Sources */,
+				021F9DAF775E6CF3E2F9BAC0 /* LargeWidget.swift in Sources */,
+				C70591D61C5187FC5F7B1E97 /* MediumWidget.swift in Sources */,
+				F720E49891801082684BB78E /* NudgeWidget.swift in Sources */,
+				38B5F6A419FA629D72644735 /* SharedProvider.swift in Sources */,
+				BB60F104655F81C52C874477 /* SmallWidget.swift in Sources */,
+				3C481866A75C95B9122CF448 /* StatsBarWidget.swift in Sources */,
+				811F73836A162074EFC3ED24 /* WidgetAPIClient.swift in Sources */,
+				14C7C0F1F06BA4E686230B00 /* WidgetModels.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D87E80146A3358D9B5F6B148 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F61E76A022C2E77DF2F82027 /* APIModels.swift in Sources */,
+				9E35C071692AE570F3C2E71E /* APIStatusView.swift in Sources */,
+				AA705449BE79F692FAF650ED /* CardStackView.swift in Sources */,
+				FBAE94E5C30527E6078BA4AF /* CardStackViewModel.swift in Sources */,
+				3CB803DCAE97FB578585D267 /* CinderAPIServer.swift in Sources */,
+				DA9DF209234674FF6F1FD374 /* CinderApp.swift in Sources */,
+				2AFD78D6888FAED09107DE1E /* CinderMenuBar.swift in Sources */,
+				D9ECE64CDD2D06B80E12F103 /* CinderProject.swift in Sources */,
+				EFF13022C9343722E16B27AB /* CinderTheme.swift in Sources */,
+				93B506AA5D4C64B958E5F4D8 /* CinderTrayView.swift in Sources */,
+				01486B969E908031E5A1FE31 /* ClaudeSkillsService.swift in Sources */,
+				BA6DAF36902B31DC8F8625F8 /* Color+Cinder.swift in Sources */,
+				96C5C750E21F602AE843F811 /* ContentView.swift in Sources */,
+				A96B0DB0546C315FA2BDB2A4 /* GitService.swift in Sources */,
+				ADDE5A370099EAF3B47CBFCC /* GitTreeService.swift in Sources */,
+				D7CEBC8134E7D56E4BDDB7D6 /* GitTreeView.swift in Sources */,
+				3A9408B841C7230547E1A190 /* GraveyardView.swift in Sources */,
+				2D140EF9C054EC8C2DFC20DD /* ProjectCardView.swift in Sources */,
+				8EA932A04E12F9EFD858D362 /* ProjectScanner.swift in Sources */,
+				385A1AE447D44EFF2C915F4D /* ReignitionView.swift in Sources */,
+				78D04B76E464DBA17C80B36C /* StatsView.swift in Sources */,
+				EC73901E644A88360419294E /* SwipeRecord.swift in Sources */,
+				E27CE973CB2992EBE5EE2739 /* ThemePickerView.swift in Sources */,
+				76E27630E71DC80344A5EE45 /* View+Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CF7CBA21A526580095282183 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5D73CC81DE3ADD05CB708A4B /* CinderWidgets */;
+			targetProxy = A7E235987B9ECF94ACCC9150 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		136B2926E111E96345391DCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		3D4E5F7AD436DD506FDCDE55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sources/Cinder/Cinder.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Sources/Cinder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.bythewei.cinder;
+				PRODUCT_NAME = Cinder;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		67D0A8E4220BF8E7232B7E79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_ENTITLEMENTS = WidgetExtension/CinderWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.bythewei.cinder.widgets;
+				PRODUCT_NAME = CinderWidgets;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		8F7EAD0C0D59D3EE758BCD68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Sources/Cinder/Cinder.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Sources/Cinder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.bythewei.cinder;
+				PRODUCT_NAME = Cinder;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		A3C45CFC5FEE46D9BF57E31F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		DFB3E8C13D60A00A6BEEBDE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_ENTITLEMENTS = WidgetExtension/CinderWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.bythewei.cinder.widgets;
+				PRODUCT_NAME = CinderWidgets;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		198466E0E8E196C8570FF6E8 /* Build configuration list for PBXNativeTarget "Cinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F7EAD0C0D59D3EE758BCD68 /* Debug */,
+				3D4E5F7AD436DD506FDCDE55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8DD0DCA49C5C29DE84AFB994 /* Build configuration list for PBXProject "Cinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3C45CFC5FEE46D9BF57E31F /* Debug */,
+				136B2926E111E96345391DCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		ADE470F86DCB8AF031331DE9 /* Build configuration list for PBXNativeTarget "CinderWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFB3E8C13D60A00A6BEEBDE9 /* Debug */,
+				67D0A8E4220BF8E7232B7E79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 95F532B457929822AE8AC118 /* Project object */;
+}
