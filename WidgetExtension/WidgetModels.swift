@@ -80,16 +80,24 @@ struct CinderEntry: TimelineEntry {
 // MARK: - Heat Colour Map (widget-side, no main app dependency)
 
 extension String {
+    // Base heat color — used in full-color rendering modes.
     var heatColor: Color {
         switch self {
-        case "Blazing": return Color(red: 1.00, green: 0.38, blue: 0.10)
-        case "Hot":     return Color(red: 1.00, green: 0.55, blue: 0.20)
-        case "Warm":    return Color(red: 1.00, green: 0.72, blue: 0.10)
-        case "Cooling": return Color(red: 0.45, green: 0.60, blue: 0.80)
-        case "Cold":    return Color(red: 0.35, green: 0.45, blue: 0.65)
-        case "Ash":     return Color(red: 0.32, green: 0.30, blue: 0.33)
+        case "Blazing": return Color(hue: 0.043, saturation: 0.90, brightness: 1.00)
+        case "Hot":     return Color(hue: 0.068, saturation: 0.80, brightness: 1.00)
+        case "Warm":    return Color(hue: 0.117, saturation: 0.90, brightness: 1.00)
+        case "Cooling": return Color(hue: 0.597, saturation: 0.44, brightness: 0.80)
+        case "Cold":    return Color(hue: 0.619, saturation: 0.46, brightness: 0.65)
+        case "Ash":     return Color(hue: 0.820, saturation: 0.03, brightness: 0.33)
         default:        return Color(white: 0.4)
         }
+    }
+
+    // Rendering-mode-aware heat color.
+    // In .accented mode the system tints the widget; use .primary so accented
+    // elements read correctly against the system-provided tint background.
+    func heatColor(for renderingMode: WidgetRenderingMode) -> Color {
+        renderingMode == .accented ? .primary : heatColor
     }
 
     var heatIcon: String {
@@ -115,6 +123,6 @@ extension Color {
     static let widgetSurface = Color(red: 0.13, green: 0.12, blue: 0.14)
     static let widgetMuted   = Color(white: 0.38)
     static let widgetSecond  = Color(white: 0.60)
-    static let emberHot      = Color(red: 1.00, green: 0.55, blue: 0.20)
-    static let ashGrey       = Color(red: 0.32, green: 0.30, blue: 0.33)
+    static let emberHot      = Color(hue: 0.068, saturation: 0.80, brightness: 1.00)
+    static let ashGrey       = Color(hue: 0.820, saturation: 0.03, brightness: 0.33)
 }

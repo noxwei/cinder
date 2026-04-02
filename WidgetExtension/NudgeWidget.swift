@@ -22,7 +22,8 @@ struct NudgeWidget: Widget {
 
 struct NudgeWidgetView: View {
     let entry: CinderEntry
-    @Environment(\.widgetFamily) var family
+    @Environment(\.widgetFamily) private var family
+    @Environment(\.widgetRenderingMode) private var renderingMode
 
     // Pick a cold/cooling project for today — deterministic by day of year
     private var pick: ProjectResponse? {
@@ -80,16 +81,17 @@ struct NudgeWidgetView: View {
             Spacer()
 
             if let p = pick {
-                // Heat indicator line
+                // Heat indicator
                 HStack(spacing: 4) {
                     Image(systemName: p.heat.heatIcon)
                         .font(.system(size: 10, weight: .semibold))
-                        .foregroundStyle(p.heat.heatColor)
+                        .foregroundStyle(p.heat.heatColor(for: renderingMode))
                     Text(p.heat.uppercased())
                         .font(.system(size: 9, weight: .bold))
                         .tracking(1)
-                        .foregroundStyle(p.heat.heatColor)
+                        .foregroundStyle(p.heat.heatColor(for: renderingMode))
                 }
+                .widgetAccentable()
                 .padding(.bottom, 4)
 
                 Text(p.name)
@@ -97,6 +99,7 @@ struct NudgeWidgetView: View {
                     .foregroundStyle(.white)
                     .lineLimit(2)
                     .minimumScaleFactor(0.75)
+                    .widgetAccentable()
 
                 Text(nudgePrompt)
                     .font(.system(size: 10, design: .monospaced))
@@ -144,15 +147,17 @@ struct NudgeWidgetView: View {
                         .font(.system(size: 16, weight: .black))
                         .foregroundStyle(.white)
                         .lineLimit(2)
+                        .widgetAccentable()
 
                     HStack(spacing: 4) {
                         Image(systemName: p.heat.heatIcon)
                             .font(.system(size: 10))
-                            .foregroundStyle(p.heat.heatColor)
+                            .foregroundStyle(p.heat.heatColor(for: renderingMode))
                         Text(p.heat)
                             .font(.system(size: 10, weight: .medium))
-                            .foregroundStyle(p.heat.heatColor)
+                            .foregroundStyle(p.heat.heatColor(for: renderingMode))
                     }
+                    .widgetAccentable()
                     .padding(.top, 2)
                 } else {
                     Text("All fires\nburning.")

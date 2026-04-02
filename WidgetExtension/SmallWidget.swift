@@ -1,7 +1,7 @@
 import WidgetKit
 import SwiftUI
 
-// MARK: - Small Widget (2×2)
+// MARK: - Small Widget (2x2)
 // Single hottest project — name, heat dot, dormant days. Glanceable.
 
 struct SmallWidget: Widget {
@@ -21,14 +21,16 @@ struct SmallWidget: Widget {
 struct SmallWidgetView: View {
     let entry: CinderEntry
 
+    @Environment(\.widgetRenderingMode) private var renderingMode
+
     private var top: ProjectResponse? {
         entry.data.projects.first
     }
 
     var body: some View {
         ZStack {
-            // Heat-tinted background glow
-            if let p = top {
+            // Heat-tinted background glow — suppressed in accented mode
+            if renderingMode != .accented, let p = top {
                 RadialGradient(
                     colors: [p.heat.heatColor.opacity(0.22), Color.widgetBase],
                     center: .topLeading,
@@ -42,12 +44,13 @@ struct SmallWidgetView: View {
                 HStack(spacing: 5) {
                     Image(systemName: top?.heat.heatIcon ?? "flame.fill")
                         .font(.system(size: 11, weight: .bold))
-                        .foregroundStyle(top?.heat.heatColor ?? .emberHot)
+                        .foregroundStyle(top?.heat.heatColor(for: renderingMode) ?? .primary)
                     Text((top?.heat ?? "–").uppercased())
                         .font(.system(size: 10, weight: .bold))
                         .tracking(1.2)
-                        .foregroundStyle(top?.heat.heatColor ?? .emberHot)
+                        .foregroundStyle(top?.heat.heatColor(for: renderingMode) ?? .primary)
                 }
+                .widgetAccentable()
                 .padding(.bottom, 6)
 
                 Spacer()
@@ -58,6 +61,7 @@ struct SmallWidgetView: View {
                     .foregroundStyle(.white)
                     .lineLimit(2)
                     .minimumScaleFactor(0.75)
+                    .widgetAccentable()
 
                 // Dormant days
                 Text(dormantLabel)

@@ -3,21 +3,20 @@ import SwiftUI
 
 // MARK: - Cinder Widget Bundle
 // All 6 widgets registered here.
-// The graveyard one is the one we'd actually use. 墓地即动力。🪦
 
 @main
 struct CinderWidgetBundle: WidgetBundle {
     var body: some Widget {
         // Heat tracking
-        SmallWidget()       // Single hottest project (2×2)
-        MediumWidget()      // Top 5 heat squares (4×2)
-        LargeWidget()       // Full grid sorted hottest-first (4×4)
+        SmallWidget()       // Single hottest project (systemSmall)
+        MediumWidget()      // Top 5 heat squares (systemMedium)
+        LargeWidget()       // Full grid hottest-first (systemLarge + systemExtraLarge)
 
-        // Shame-based motivation
-        GraveyardWidget()   // Ash counter — the fan favourite
+        // Motivation
+        GraveyardWidget()   // Ash counter — shame-based (systemSmall + systemMedium)
 
         // Daily practice
-        NudgeWidget()       // "What should I work on?" tarot card
-        StatsBarWidget()    // Ultra minimal numbers bar + accessory rect
+        NudgeWidget()       // "What should I work on?" tarot card (systemSmall + systemMedium)
+        StatsBarWidget()    // Ultra minimal numbers bar (systemSmall)
     }
 }

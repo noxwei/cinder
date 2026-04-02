@@ -3,7 +3,6 @@ import SwiftUI
 
 // MARK: - Stats Bar Widget
 // Ultra minimal. Just numbers across one line.
-// 🔥3  🟡4  🟢2  🔵3  💀2
 // Accessory rect / lock screen / system small variants.
 
 struct StatsBarWidget: Widget {
@@ -23,25 +22,33 @@ struct StatsBarWidget: Widget {
 struct StatsBarWidgetView: View {
     let entry: CinderEntry
 
-    // Counts per heat tier
-    private var counts: [(icon: String, color: Color, count: Int)] {
+    @Environment(\.widgetRenderingMode) private var renderingMode
+
+    // Heat tier definitions — colors adapt to rendering mode
+    private struct HeatTier {
+        let icon: String
+        let baseColor: Color
+        let label: String
+        let count: Int
+    }
+
+    private var tiers: [HeatTier] {
         let projects = entry.data.projects
         return [
-            ("flame.fill",   .emberHot,                       projects.filter { $0.heat == "Blazing" }.count),
-            ("flame",        Color(red: 1.0, green: 0.6, blue: 0.2), projects.filter { $0.heat == "Hot" }.count),
-            ("thermometer.medium", Color(red: 0.9, green: 0.8, blue: 0.3), projects.filter { $0.heat == "Warm" }.count),
-            ("snowflake",    Color(red: 0.35, green: 0.45, blue: 0.65), projects.filter { $0.heat == "Cold" || $0.heat == "Cooling" }.count),
-            ("moon.fill",    Color.ashGrey,                   projects.filter { $0.heat == "Ash" }.count),
+            HeatTier(icon: "flame.fill",         baseColor: .emberHot,
+                     label: "blazing", count: projects.filter { $0.heat == "Blazing" }.count),
+            HeatTier(icon: "flame",               baseColor: Color(hue: 0.068, saturation: 0.80, brightness: 1.00),
+                     label: "hot",     count: projects.filter { $0.heat == "Hot" }.count),
+            HeatTier(icon: "thermometer.medium",  baseColor: Color(hue: 0.117, saturation: 0.90, brightness: 1.00),
+                     label: "warm",    count: projects.filter { $0.heat == "Warm" }.count),
+            HeatTier(icon: "snowflake",            baseColor: Color(hue: 0.619, saturation: 0.46, brightness: 0.65),
+                     label: "cold",    count: projects.filter { $0.heat == "Cold" || $0.heat == "Cooling" }.count),
+            HeatTier(icon: "moon.fill",            baseColor: .ashGrey,
+                     label: "ash",     count: projects.filter { $0.heat == "Ash" }.count),
         ].filter { $0.count > 0 }
     }
 
     var body: some View {
-        smallView
-    }
-
-    // MARK: Small Widget
-
-    private var smallView: some View {
         VStack(alignment: .leading, spacing: 0) {
             // Header
             Text("CINDER")
@@ -51,21 +58,24 @@ struct StatsBarWidgetView: View {
 
             Spacer()
 
-            // Heat grid — 2×3 or flex layout
+            // Heat grid
             VStack(alignment: .leading, spacing: 8) {
-                ForEach(counts.indices, id: \.self) { i in
-                    let item = counts[i]
+                ForEach(tiers.indices, id: \.self) { i in
+                    let tier = tiers[i]
+                    let displayColor = renderingMode == .accented ? Color.primary : tier.baseColor
                     HStack(spacing: 6) {
-                        Image(systemName: item.icon)
+                        Image(systemName: tier.icon)
                             .font(.system(size: 11, weight: .semibold))
-                            .foregroundStyle(item.color)
+                            .foregroundStyle(displayColor)
                             .frame(width: 14)
+                            .widgetAccentable()
 
-                        Text("\(item.count)")
+                        Text("\(tier.count)")
                             .font(.system(size: 18, weight: .black, design: .rounded))
                             .foregroundStyle(.white)
+                            .widgetAccentable()
 
-                        Text(heatLabel(for: i))
+                        Text(tier.label)
                             .font(.system(size: 9))
                             .foregroundStyle(Color.widgetMuted)
                     }
@@ -81,10 +91,5 @@ struct StatsBarWidgetView: View {
         }
         .padding(14)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-    }
-
-    private func heatLabel(for index: Int) -> String {
-        let labels = ["blazing", "hot", "warm", "cold", "ash"]
-        return index < labels.count ? labels[index] : ""
     }
 }

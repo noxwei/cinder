@@ -3,7 +3,6 @@ import SwiftUI
 
 // MARK: - Graveyard Widget
 // Ash projects only. Shame-based motivation.
-// 墓地即动力。
 
 struct GraveyardWidget: Widget {
     static let kind = "CinderGraveyard"
@@ -11,6 +10,9 @@ struct GraveyardWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: Self.kind, provider: CinderProvider()) { entry in
             GraveyardWidgetView(entry: entry)
+                // Dark near-black background to reinforce the graveyard aesthetic.
+                // Color.clear would let Liquid Glass through, but the dark tone is
+                // intentional here — it reads as a distinct design choice, not a bug.
                 .containerBackground(Color(red: 0.06, green: 0.05, blue: 0.07), for: .widget)
         }
         .configurationDisplayName("Graveyard")
@@ -21,7 +23,8 @@ struct GraveyardWidget: Widget {
 
 struct GraveyardWidgetView: View {
     let entry: CinderEntry
-    @Environment(\.widgetFamily) var family
+    @Environment(\.widgetFamily) private var family
+    @Environment(\.widgetRenderingMode) private var renderingMode
 
     private var ashCount: Int {
         entry.data.projects.filter { $0.heat == "Ash" }.count
@@ -47,6 +50,11 @@ struct GraveyardWidgetView: View {
         return lines[day % lines.count]
     }
 
+    // Ash color adapts to rendering mode
+    private var ashColor: Color {
+        renderingMode == .accented ? .primary : .ashGrey
+    }
+
     var body: some View {
         if family == .systemMedium {
             mediumView
@@ -62,12 +70,13 @@ struct GraveyardWidgetView: View {
             HStack(spacing: 6) {
                 Image(systemName: "moon.fill")
                     .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(Color.ashGrey)
+                    .foregroundStyle(ashColor)
                 Text("GRAVEYARD")
                     .font(.system(size: 9, weight: .bold))
                     .tracking(1.5)
-                    .foregroundStyle(Color.ashGrey)
+                    .foregroundStyle(ashColor)
             }
+            .widgetAccentable()
 
             Spacer()
 
@@ -75,10 +84,11 @@ struct GraveyardWidgetView: View {
                 .font(.system(size: 52, weight: .black, design: .rounded))
                 .foregroundStyle(.white)
                 .minimumScaleFactor(0.5)
+                .widgetAccentable()
 
             Text(ashCount == 1 ? "project" : "projects")
                 .font(.system(size: 12, weight: .medium))
-                .foregroundStyle(Color.ashGrey)
+                .foregroundStyle(ashColor)
 
             Text(shameText)
                 .font(.system(size: 10, design: .monospaced))
@@ -87,18 +97,6 @@ struct GraveyardWidgetView: View {
         }
         .padding(14)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        .background(
-            ZStack {
-                Color(red: 0.06, green: 0.05, blue: 0.07)
-                // Subtle vignette
-                RadialGradient(
-                    colors: [.clear, Color(white: 0, opacity: 0.4)],
-                    center: .bottomTrailing,
-                    startRadius: 30,
-                    endRadius: 140
-                )
-            }
-        )
     }
 
     // MARK: Medium — number + list of ash project names
@@ -110,12 +108,13 @@ struct GraveyardWidgetView: View {
                 HStack(spacing: 5) {
                     Image(systemName: "moon.fill")
                         .font(.caption.bold())
-                        .foregroundStyle(Color.ashGrey)
+                        .foregroundStyle(ashColor)
                     Text("GRAVEYARD")
                         .font(.system(size: 9, weight: .bold))
                         .tracking(1.5)
-                        .foregroundStyle(Color.ashGrey)
+                        .foregroundStyle(ashColor)
                 }
+                .widgetAccentable()
 
                 Spacer()
 
@@ -123,6 +122,7 @@ struct GraveyardWidgetView: View {
                     .font(.system(size: 48, weight: .black, design: .rounded))
                     .foregroundStyle(.white)
                     .minimumScaleFactor(0.4)
+                    .widgetAccentable()
 
                 Text(shameText)
                     .font(.system(size: 9, design: .monospaced))
@@ -138,7 +138,7 @@ struct GraveyardWidgetView: View {
                 ForEach(ashProjects.prefix(5), id: \.id) { project in
                     HStack(spacing: 6) {
                         Circle()
-                            .fill(Color.ashGrey.opacity(0.5))
+                            .fill(ashColor.opacity(0.5))
                             .frame(width: 5, height: 5)
 
                         VStack(alignment: .leading, spacing: 1) {
@@ -165,16 +165,5 @@ struct GraveyardWidgetView: View {
         }
         .padding(14)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(
-            ZStack {
-                Color(red: 0.06, green: 0.05, blue: 0.07)
-                RadialGradient(
-                    colors: [.clear, Color(white: 0, opacity: 0.5)],
-                    center: .bottomTrailing,
-                    startRadius: 40,
-                    endRadius: 200
-                )
-            }
-        )
     }
 }

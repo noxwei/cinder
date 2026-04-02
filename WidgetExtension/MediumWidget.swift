@@ -1,7 +1,7 @@
 import WidgetKit
 import SwiftUI
 
-// MARK: - Medium Widget (4×2)
+// MARK: - Medium Widget (4x2)
 // Top 5 projects as heat-coloured Cinder squares + summary line.
 
 struct MediumWidget: Widget {
@@ -21,6 +21,8 @@ struct MediumWidget: Widget {
 struct MediumWidgetView: View {
     let entry: CinderEntry
 
+    @Environment(\.widgetRenderingMode) private var renderingMode
+
     private var topFive: [ProjectResponse] {
         Array(entry.data.projects.prefix(5))
     }
@@ -33,7 +35,7 @@ struct MediumWidgetView: View {
                     icon: "flame.fill",
                     value: "\(entry.data.digest.hotProjects.count)",
                     label: "blazing",
-                    color: .emberHot
+                    color: renderingMode == .accented ? .primary : .emberHot
                 )
                 Text(" · ")
                     .foregroundStyle(.widgetMuted)
@@ -42,18 +44,21 @@ struct MediumWidgetView: View {
                     icon: "snowflake",
                     value: "\(entry.data.digest.needsAttention.count)",
                     label: "cold",
-                    color: Color(red: 0.35, green: 0.45, blue: 0.65)
+                    color: renderingMode == .accented
+                        ? .secondary
+                        : Color(hue: 0.619, saturation: 0.46, brightness: 0.65)
                 )
                 Spacer()
-                Text("↻ " + refreshAge)
+                Text("\u{21BB} " + refreshAge)
                     .font(.system(size: 9))
                     .foregroundStyle(.widgetMuted)
             }
+            .widgetAccentable()
 
             // Heat squares row
             HStack(spacing: 8) {
                 ForEach(topFive, id: \.id) { project in
-                    CinderSquare(project: project, showName: true)
+                    CinderSquare(project: project, showName: true, renderingMode: renderingMode)
                 }
                 // Fill empty slots
                 if topFive.count < 5 {
@@ -91,30 +96,40 @@ struct CinderSquare: View {
     let project: ProjectResponse
     var showName: Bool = false
     var size: CGFloat = 0   // 0 = flexible
+    var renderingMode: WidgetRenderingMode = .fullColor
+
+    private var tileColor: Color {
+        project.heat.heatColor(for: renderingMode)
+    }
 
     var body: some View {
         VStack(spacing: 4) {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(project.heat.heatColor.opacity(0.18))
+                    .fill(renderingMode == .accented
+                          ? Color.primary.opacity(0.15)
+                          : project.heat.heatColor.opacity(0.18))
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(project.heat.heatColor.opacity(0.45), lineWidth: 1)
+                            .stroke(tileColor.opacity(0.45), lineWidth: 1)
                     )
 
                 VStack(spacing: 3) {
                     Image(systemName: project.heat.heatIcon)
                         .font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(project.heat.heatColor)
+                        .foregroundStyle(tileColor)
+                        .widgetAccentable()
 
                     if project.dormantDays > 0 {
                         Text("\(project.dormantDays)d")
                             .font(.system(size: 9, weight: .bold, design: .monospaced))
-                            .foregroundStyle(project.heat.heatColor.opacity(0.8))
+                            .foregroundStyle(tileColor.opacity(0.8))
+                            .widgetAccentable()
                     } else {
                         Text("now")
                             .font(.system(size: 9, weight: .bold, design: .monospaced))
-                            .foregroundStyle(project.heat.heatColor.opacity(0.8))
+                            .foregroundStyle(tileColor.opacity(0.8))
+                            .widgetAccentable()
                     }
                 }
             }
