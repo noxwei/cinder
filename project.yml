@@ -51,7 +51,7 @@ targets:
         INFOPLIST_FILE: WidgetExtension/Info.plist
         CODE_SIGN_STYLE: Automatic
         SWIFT_VERSION: "6.0"
-        APPLICATION_EXTENSION_API_ONLY: NO
+        APPLICATION_EXTENSION_API_ONLY: YES
     entitlements:
       path: WidgetExtension/CinderWidgets.entitlements
       properties:
