@@ -38,7 +38,7 @@ struct MediumWidgetView: View {
                     color: renderingMode == .accented ? .primary : Color.emberHot
                 )
                 Text(" · ")
-                    .foregroundStyle(.widgetMuted)
+                    .foregroundStyle(Color.widgetMuted)
                     .font(.caption)
                 summaryChip(
                     icon: "snowflake",
