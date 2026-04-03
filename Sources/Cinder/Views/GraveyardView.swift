@@ -42,10 +42,10 @@ struct GraveyardView: View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Graveyard")
                 .font(.title2.bold())
-                .foregroundStyle(.cinderPrimary)
+                .foregroundStyle(Color.cinderPrimary)
             Text("\(viewModel.archivedProjects.count) archived projects — bring one back to life")
                 .font(.callout)
-                .foregroundStyle(.cinderSecondary)
+                .foregroundStyle(Color.cinderSecondary)
         }
     }
 
@@ -53,13 +53,13 @@ struct GraveyardView: View {
         VStack(spacing: 16) {
             Image(systemName: "sparkles")
                 .font(.system(size: 56))
-                .foregroundStyle(.reigniteGreen)
+                .foregroundStyle(Color.reigniteGreen)
             Text("Nothing here")
                 .font(.title2.bold())
-                .foregroundStyle(.cinderPrimary)
+                .foregroundStyle(Color.cinderPrimary)
             Text("Projects you archive will appear here.\nYou can always un-archive them.")
                 .multilineTextAlignment(.center)
-                .foregroundStyle(.cinderSecondary)
+                .foregroundStyle(Color.cinderSecondary)
                 .font(.callout)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -80,11 +80,11 @@ struct GraveyardCard: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(project.name)
                         .font(.headline)
-                        .foregroundStyle(.cinderPrimary)
+                        .foregroundStyle(Color.cinderPrimary)
                         .lineLimit(1)
                     Text(project.path.lastPathComponent)
                         .font(.caption)
-                        .foregroundStyle(.cinderMuted)
+                        .foregroundStyle(Color.cinderMuted)
                         .monospaced()
                 }
                 Spacer()
@@ -102,17 +102,17 @@ struct GraveyardCard: View {
             HStack {
                 Image(systemName: "clock")
                     .font(.caption2)
-                    .foregroundStyle(.cinderMuted)
+                    .foregroundStyle(Color.cinderMuted)
                 Text(dormantText)
                     .font(.caption)
-                    .foregroundStyle(.cinderMuted)
+                    .foregroundStyle(Color.cinderMuted)
                 Spacer()
                 Button("Un-archive") {
                     onUnarchive()
                 }
                 .buttonStyle(.plain)
                 .font(.caption.bold())
-                .foregroundStyle(.reigniteGreen)
+                .foregroundStyle(Color.reigniteGreen)
                 .accessibilityLabel("Un-archive \(project.name)")
             }
         }

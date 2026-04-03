@@ -10,10 +10,10 @@ struct GitTreeView: View {
     let project: CinderProject
     @Environment(\.theme) private var theme
 
-    @State private var commits: [GitCommit] = []
+    @State private var commits: [GitTreeCommit] = []
     @State private var isLoading = true
     @State private var cinderMode = false
-    @State private var selectedCommit: GitCommit?
+    @State private var selectedCommit: GitTreeCommit?
 
     private let service = GitTreeService()
 
@@ -119,7 +119,7 @@ struct GitTreeView: View {
 
     // MARK: Commit Detail Bar
 
-    private func commitDetailBar(_ commit: GitCommit) -> some View {
+    private func commitDetailBar(_ commit: GitTreeCommit) -> some View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
                 Text(commit.message)
@@ -196,10 +196,10 @@ struct GitTreeView: View {
 // MARK: - WKWebView Wrapper
 
 struct GitWebView: NSViewRepresentable {
-    let commits: [GitCommit]
+    let commits: [GitTreeCommit]
     let cinderMode: Bool
     let theme: ThemeManager
-    let onSelect: (GitCommit) -> Void
+    let onSelect: (GitTreeCommit) -> Void
 
     func makeNSView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration()
@@ -252,7 +252,7 @@ struct GitWebView: NSViewRepresentable {
 
     class Coordinator: NSObject, WKScriptMessageHandler {
         weak var webView: WKWebView?
-        var onSelect: ((GitCommit) -> Void)?
+        var onSelect: ((GitTreeCommit) -> Void)?
 
         func userContentController(
             _ controller: WKUserContentController,

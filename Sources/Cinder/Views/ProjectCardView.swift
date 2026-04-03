@@ -13,18 +13,18 @@ struct ProjectCardView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(project.name)
                             .font(.title2.bold())
-                            .foregroundStyle(.cinderPrimary)
+                            .foregroundStyle(Color.cinderPrimary)
                             .lineLimit(2)
 
                         Text(project.path.lastPathComponent)
                             .font(.caption)
-                            .foregroundStyle(.cinderMuted)
+                            .foregroundStyle(Color.cinderMuted)
                             .monospaced()
                     }
                     Spacer()
                     if !project.isGitRepo {
                         Image(systemName: "exclamationmark.triangle.fill")
-                            .foregroundStyle(.heatWarm)
+                            .foregroundStyle(Color.heatWarm)
                             .accessibilityLabel("Not a git repository")
                     }
                 }
@@ -105,16 +105,16 @@ struct ProjectCardView: View {
         if project.recentCommits.isEmpty {
             HStack {
                 Image(systemName: "minus.circle")
-                    .foregroundStyle(.cinderMuted)
+                    .foregroundStyle(Color.cinderMuted)
                 Text(project.isGitRepo ? "No commits found" : "No git history")
-                    .foregroundStyle(.cinderMuted)
+                    .foregroundStyle(Color.cinderMuted)
                     .font(.callout)
             }
         } else {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Recent commits")
                     .font(.caption.bold())
-                    .foregroundStyle(.cinderMuted)
+                    .foregroundStyle(Color.cinderMuted)
                     .tracking(1)
                     .textCase(.uppercase)
 
@@ -138,7 +138,7 @@ struct ProjectCardView: View {
             if let date = project.lastCommitDate {
                 Text(date, style: .date)
                     .font(.caption)
-                    .foregroundStyle(.cinderMuted)
+                    .foregroundStyle(Color.cinderMuted)
             }
         }
     }
@@ -202,19 +202,19 @@ struct CommitRow: View {
         HStack(alignment: .top, spacing: 8) {
             Text(commit.hash)
                 .font(.system(.caption2, design: .monospaced))
-                .foregroundStyle(.heatWarm.opacity(0.8))
+                .foregroundStyle(Color.heatWarm.opacity(0.8))
                 .frame(width: 48, alignment: .leading)
 
             Text(commit.shortMessage)
                 .font(.callout)
-                .foregroundStyle(.cinderPrimary)
+                .foregroundStyle(Color.cinderPrimary)
                 .lineLimit(1)
 
             Spacer()
 
             Text(commit.relativeDate)
                 .font(.caption2)
-                .foregroundStyle(.cinderMuted)
+                .foregroundStyle(Color.cinderMuted)
         }
     }
 }

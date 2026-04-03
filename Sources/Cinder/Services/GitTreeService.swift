@@ -4,7 +4,7 @@ import Foundation
 // Parses `git log --graph --oneline --decorate --color=never` output into
 // structured data for rendering in the GitTreeView WKWebView.
 
-struct GitCommit: Identifiable, Sendable {
+struct GitTreeCommit: Identifiable, Sendable {
     let id: String          // short hash
     let fullHash: String
     let message: String
@@ -18,7 +18,7 @@ struct GitCommit: Identifiable, Sendable {
 
 actor GitTreeService {
 
-    func fetchTree(for projectPath: String, limit: Int = 80) async throws -> [GitCommit] {
+    func fetchTree(for projectPath: String, limit: Int = 80) async throws -> [GitTreeCommit] {
         let format = "%H|||%h|||%s|||%an|||%ad|||%ar|||%D"
         let args = [
             "log",
@@ -36,8 +36,8 @@ actor GitTreeService {
 
     // MARK: - Private
 
-    private func parse(_ raw: String) -> [GitCommit] {
-        var commits: [GitCommit] = []
+    private func parse(_ raw: String) -> [GitTreeCommit] {
+        var commits: [GitTreeCommit] = []
         let lines = raw.components(separatedBy: "\n")
 
         for line in lines {
@@ -73,7 +73,7 @@ actor GitTreeService {
                 || graphLine.contains("\\")
                 || graphLine.contains("/")
 
-            commits.append(GitCommit(
+            commits.append(GitTreeCommit(
                 id: shortHash,
                 fullHash: fullHash,
                 message: message,
