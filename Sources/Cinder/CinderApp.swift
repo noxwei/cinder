@@ -5,6 +5,7 @@ import SwiftData
 struct CinderApp: App {
     @State private var themeManager = ThemeManager()
     @State private var menuBarController = CinderMenuBar()
+    @State private var notchPanel = CinderNotchPanel()
 
     var body: some Scene {
         WindowGroup {
