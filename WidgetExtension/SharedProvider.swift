@@ -2,7 +2,7 @@ import WidgetKit
 
 // Single timeline provider shared by all Cinder widgets.
 // Fetches once per cycle — macOS caches the result across widget families.
-struct CinderProvider: TimelineProvider {
+struct CinderProvider: @preconcurrency TimelineProvider {
     func placeholder(in context: Context) -> CinderEntry {
         CinderEntry(date: .now, data: .placeholder, isPlaceholder: true)
     }

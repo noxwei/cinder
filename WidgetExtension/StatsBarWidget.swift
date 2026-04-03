@@ -11,7 +11,7 @@ struct StatsBarWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: Self.kind, provider: CinderProvider()) { entry in
             StatsBarWidgetView(entry: entry)
-                .containerBackground(.widgetBase, for: .widget)
+                .containerBackground(Color.widgetBase, for: .widget)
         }
         .configurationDisplayName("Stats Bar")
         .description("Heat breakdown at a glance.")
@@ -35,7 +35,7 @@ struct StatsBarWidgetView: View {
     private var tiers: [HeatTier] {
         let projects = entry.data.projects
         return [
-            HeatTier(icon: "flame.fill",         baseColor: .emberHot,
+            HeatTier(icon: "flame.fill",         baseColor: Color.emberHot,
                      label: "blazing", count: projects.filter { $0.heat == "Blazing" }.count),
             HeatTier(icon: "flame",               baseColor: Color(hue: 0.068, saturation: 0.80, brightness: 1.00),
                      label: "hot",     count: projects.filter { $0.heat == "Hot" }.count),
@@ -43,7 +43,7 @@ struct StatsBarWidgetView: View {
                      label: "warm",    count: projects.filter { $0.heat == "Warm" }.count),
             HeatTier(icon: "snowflake",            baseColor: Color(hue: 0.619, saturation: 0.46, brightness: 0.65),
                      label: "cold",    count: projects.filter { $0.heat == "Cold" || $0.heat == "Cooling" }.count),
-            HeatTier(icon: "moon.fill",            baseColor: .ashGrey,
+            HeatTier(icon: "moon.fill",            baseColor: Color.ashGrey,
                      label: "ash",     count: projects.filter { $0.heat == "Ash" }.count),
         ].filter { $0.count > 0 }
     }

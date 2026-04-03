@@ -10,7 +10,7 @@ struct LargeWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: Self.kind, provider: CinderProvider()) { entry in
             LargeWidgetView(entry: entry)
-                .containerBackground(.widgetBase, for: .widget)
+                .containerBackground(Color.widgetBase, for: .widget)
         }
         .configurationDisplayName("Cinder Grid")
         .description("All projects arranged by heat — hottest first.")
@@ -44,7 +44,7 @@ struct LargeWidgetView: View {
             // Header
             HStack {
                 Image(systemName: "flame.fill")
-                    .foregroundStyle(renderingMode == .accented ? .primary : .emberHot)
+                    .foregroundStyle(renderingMode == .accented ? .primary : Color.emberHot)
                     .shadow(color: renderingMode == .accented ? .clear : Color.emberHot.opacity(0.5), radius: 4)
                     .widgetAccentable()
                 Text("Cinder")
@@ -54,7 +54,7 @@ struct LargeWidgetView: View {
                 Spacer()
                 Text("\(entry.data.digest.totalActive) projects")
                     .font(.caption)
-                    .foregroundStyle(.widgetMuted)
+                    .foregroundStyle(Color.widgetMuted)
             }
 
             // Grid
@@ -69,7 +69,7 @@ struct LargeWidgetView: View {
                 heatPill(
                     "flame.fill",
                     entry.data.digest.hotProjects.count,
-                    renderingMode == .accented ? .primary : .emberHot
+                    renderingMode == .accented ? .primary : Color.emberHot
                 )
                 heatPill(
                     "snowflake",
@@ -83,10 +83,10 @@ struct LargeWidgetView: View {
                     HStack(spacing: 3) {
                         Image(systemName: "exclamationmark.circle")
                             .font(.caption2)
-                            .foregroundStyle(.widgetMuted)
+                            .foregroundStyle(Color.widgetMuted)
                         Text(urgent)
                             .font(.caption2)
-                            .foregroundStyle(.widgetMuted)
+                            .foregroundStyle(Color.widgetMuted)
                             .lineLimit(1)
                     }
                 }

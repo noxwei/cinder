@@ -472,7 +472,7 @@ function measureWords(msgEl) {
         let wi = 0;
         lines.forEach(line => {
           // each line.text is a slice; map back to word spans proportionally
-          const lineWords = line.text.trim().split(/\s+/);
+          const lineWords = line.text.trim().split(/\\s+/);
           lineWords.forEach(lw => {
             if (words[wi]) {
               words[wi].dataset.measuredWidth = String(line.width / lineWords.length);

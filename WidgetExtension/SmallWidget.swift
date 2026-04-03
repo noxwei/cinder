@@ -10,7 +10,7 @@ struct SmallWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: Self.kind, provider: CinderProvider()) { entry in
             SmallWidgetView(entry: entry)
-                .containerBackground(.widgetBase, for: .widget)
+                .containerBackground(Color.widgetBase, for: .widget)
         }
         .configurationDisplayName("Hottest Project")
         .description("Your most active project at a glance.")
@@ -66,7 +66,7 @@ struct SmallWidgetView: View {
                 // Dormant days
                 Text(dormantLabel)
                     .font(.system(size: 11))
-                    .foregroundStyle(.widgetSecond)
+                    .foregroundStyle(Color.widgetSecond)
                     .padding(.top, 3)
 
                 // Stacks

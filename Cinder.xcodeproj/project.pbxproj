@@ -11,6 +11,7 @@
 		021F9DAF775E6CF3E2F9BAC0 /* LargeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980066864950DFA22C895093 /* LargeWidget.swift */; };
 		0BAA53DAF7A26297401311E2 /* GraveyardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2C37C6675221729E6AB612 /* GraveyardWidget.swift */; };
 		14C7C0F1F06BA4E686230B00 /* WidgetModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5DEC72F52CAED05542BB3D /* WidgetModels.swift */; };
+		1690B764AD0EAD71D9D31B86 /* CinderNotchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3EAAE320167B5CE5007653 /* CinderNotchPanel.swift */; };
 		2AFD78D6888FAED09107DE1E /* CinderMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD52F412BA7C8D14860ABD8 /* CinderMenuBar.swift */; };
 		2D140EF9C054EC8C2DFC20DD /* ProjectCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4D491DC8E06260551B25C /* ProjectCardView.swift */; };
 		385A1AE447D44EFF2C915F4D /* ReignitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF62866286AFB542499654F2 /* ReignitionView.swift */; };
@@ -82,6 +83,7 @@
 		2C33ACD9FCB8490AC59BB9DA /* CinderWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CinderWidgets.entitlements; sourceTree = "<group>"; };
 		2CB04CEFD43AEA5313A21AE0 /* CinderTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinderTheme.swift; sourceTree = "<group>"; };
 		2D0694C70D721F728B7DBD75 /* CardStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackViewModel.swift; sourceTree = "<group>"; };
+		2F3EAAE320167B5CE5007653 /* CinderNotchPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinderNotchPanel.swift; sourceTree = "<group>"; };
 		3B6B64BD66B2C6F654372723 /* GitTreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitTreeService.swift; sourceTree = "<group>"; };
 		3CDEEE0A84E59672C24BB422 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		45E33BE1AB2B15BF2D7C0341 /* CinderTrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinderTrayView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				ACD52F412BA7C8D14860ABD8 /* CinderMenuBar.swift */,
+				2F3EAAE320167B5CE5007653 /* CinderNotchPanel.swift */,
 				45E33BE1AB2B15BF2D7C0341 /* CinderTrayView.swift */,
 			);
 			path = MenuBar;
@@ -374,6 +377,7 @@
 				3CB803DCAE97FB578585D267 /* CinderAPIServer.swift in Sources */,
 				DA9DF209234674FF6F1FD374 /* CinderApp.swift in Sources */,
 				2AFD78D6888FAED09107DE1E /* CinderMenuBar.swift in Sources */,
+				1690B764AD0EAD71D9D31B86 /* CinderNotchPanel.swift in Sources */,
 				D9ECE64CDD2D06B80E12F103 /* CinderProject.swift in Sources */,
 				EFF13022C9343722E16B27AB /* CinderTheme.swift in Sources */,
 				93B506AA5D4C64B958E5F4D8 /* CinderTrayView.swift in Sources */,
@@ -486,7 +490,7 @@
 		67D0A8E4220BF8E7232B7E79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = WidgetExtension/CinderWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -592,7 +596,7 @@
 		DFB3E8C13D60A00A6BEEBDE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = WidgetExtension/CinderWidgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

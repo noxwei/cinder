@@ -12,7 +12,7 @@ struct NudgeWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: Self.kind, provider: CinderProvider()) { entry in
             NudgeWidgetView(entry: entry)
-                .containerBackground(.widgetBase, for: .widget)
+                .containerBackground(Color.widgetBase, for: .widget)
         }
         .configurationDisplayName("Daily Nudge")
         .description("One cold project to revisit today.")

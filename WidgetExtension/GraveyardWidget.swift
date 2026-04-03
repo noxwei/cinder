@@ -52,7 +52,7 @@ struct GraveyardWidgetView: View {
 
     // Ash color adapts to rendering mode
     private var ashColor: Color {
-        renderingMode == .accented ? .primary : .ashGrey
+        renderingMode == .accented ? .primary : Color.ashGrey
     }
 
     var body: some View {

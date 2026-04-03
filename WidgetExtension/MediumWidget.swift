@@ -10,7 +10,7 @@ struct MediumWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: Self.kind, provider: CinderProvider()) { entry in
             MediumWidgetView(entry: entry)
-                .containerBackground(.widgetBase, for: .widget)
+                .containerBackground(Color.widgetBase, for: .widget)
         }
         .configurationDisplayName("Heat Row")
         .description("Top 5 projects as heat-coloured squares.")
@@ -35,7 +35,7 @@ struct MediumWidgetView: View {
                     icon: "flame.fill",
                     value: "\(entry.data.digest.hotProjects.count)",
                     label: "blazing",
-                    color: renderingMode == .accented ? .primary : .emberHot
+                    color: renderingMode == .accented ? .primary : Color.emberHot
                 )
                 Text(" · ")
                     .foregroundStyle(.widgetMuted)
@@ -51,7 +51,7 @@ struct MediumWidgetView: View {
                 Spacer()
                 Text("\u{21BB} " + refreshAge)
                     .font(.system(size: 9))
-                    .foregroundStyle(.widgetMuted)
+                    .foregroundStyle(Color.widgetMuted)
             }
             .widgetAccentable()
 
@@ -138,7 +138,7 @@ struct CinderSquare: View {
             if showName {
                 Text(project.name)
                     .font(.system(size: 9, weight: .medium))
-                    .foregroundStyle(.widgetSecond)
+                    .foregroundStyle(Color.widgetSecond)
                     .lineLimit(1)
                     .truncationMode(.middle)
                     .frame(maxWidth: .infinity)
