@@ -33,18 +33,21 @@ struct StatsBarWidgetView: View {
     }
 
     private var tiers: [HeatTier] {
-        let projects = entry.data.projects
+        // Single pass — count all heat levels at once
+        var counts: [String: Int] = [:]
+        for p in entry.data.projects { counts[p.heat, default: 0] += 1 }
+        let cold = (counts["Cold"] ?? 0) + (counts["Cooling"] ?? 0)
         return [
-            HeatTier(icon: "flame.fill",         baseColor: Color.emberHot,
-                     label: "blazing", count: projects.filter { $0.heat == "Blazing" }.count),
-            HeatTier(icon: "flame",               baseColor: Color(hue: 0.068, saturation: 0.80, brightness: 1.00),
-                     label: "hot",     count: projects.filter { $0.heat == "Hot" }.count),
-            HeatTier(icon: "thermometer.medium",  baseColor: Color(hue: 0.117, saturation: 0.90, brightness: 1.00),
-                     label: "warm",    count: projects.filter { $0.heat == "Warm" }.count),
-            HeatTier(icon: "snowflake",            baseColor: Color(hue: 0.619, saturation: 0.46, brightness: 0.65),
-                     label: "cold",    count: projects.filter { $0.heat == "Cold" || $0.heat == "Cooling" }.count),
-            HeatTier(icon: "moon.fill",            baseColor: Color.ashGrey,
-                     label: "ash",     count: projects.filter { $0.heat == "Ash" }.count),
+            HeatTier(icon: "flame.fill",        baseColor: Color.emberHot,
+                     label: "blazing", count: counts["Blazing"] ?? 0),
+            HeatTier(icon: "flame",              baseColor: Color(hue: 0.068, saturation: 0.80, brightness: 1.00),
+                     label: "hot",     count: counts["Hot"] ?? 0),
+            HeatTier(icon: "thermometer.medium", baseColor: Color(hue: 0.117, saturation: 0.90, brightness: 1.00),
+                     label: "warm",    count: counts["Warm"] ?? 0),
+            HeatTier(icon: "snowflake",           baseColor: Color(hue: 0.619, saturation: 0.46, brightness: 0.65),
+                     label: "cold",    count: cold),
+            HeatTier(icon: "moon.fill",           baseColor: Color.ashGrey,
+                     label: "ash",     count: counts["Ash"] ?? 0),
         ].filter { $0.count > 0 }
     }
 

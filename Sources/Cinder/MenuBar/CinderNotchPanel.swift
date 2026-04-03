@@ -19,8 +19,11 @@ final class CinderNotchPanel: NSObject {
     private var projects:     [CinderProject] = []
     private var cinderModeOn  = false
 
-    private var pulseTimer:   Timer?
+    private var pulseTimer:    Timer?
     private var glowPulse:    Double = 0
+    private var globalMonitor: Any?
+    private var dominantHeat:  HeatLevel = .ash
+    private var top4:          [CinderProject] = []
 
     // MARK: - Lifecycle
 
@@ -33,6 +36,7 @@ final class CinderNotchPanel: NSObject {
     func teardown() {
         pulseTimer?.invalidate()
         pulseTimer = nil
+        if let m = globalMonitor { NSEvent.removeMonitor(m); globalMonitor = nil }
         barPanel?.orderOut(nil)
         drawerPanel?.orderOut(nil)
         NotificationCenter.default.removeObserver(self)
@@ -85,9 +89,9 @@ final class CinderNotchPanel: NSObject {
 
         let barView = NSHostingView(
             rootView: NotchBarView(
-                projects:    projects,
-                cinderMode:  cinderModeOn,
-                glowPulse:   glowPulse
+                dominantHeat: dominantHeat,
+                cinderMode:   cinderModeOn,
+                glowPulse:    glowPulse
             )
         )
         barView.frame = NSRect(origin: .zero, size: geo.barRect.size)
@@ -121,25 +125,20 @@ final class CinderNotchPanel: NSObject {
     }
 
     private func tickPulse() {
-        let dominant = dominantHeat
-        guard dominant == .blazing || dominant == .hot else {
+        guard dominantHeat == .blazing || dominantHeat == .hot else {
             glowPulse = 0; refreshBar(); return
         }
         glowPulse = (glowPulse + 0.02).truncatingRemainder(dividingBy: .pi * 2)
         refreshBar()
     }
 
-    private var dominantHeat: HeatLevel {
-        projects.sorted { $0.heatLevel.rank < $1.heatLevel.rank }.first?.heatLevel ?? .ash
-    }
-
     private func refreshBar() {
         guard let panel = barPanel,
               let hosting = panel.contentView as? NSHostingView<NotchBarView> else { return }
         hosting.rootView = NotchBarView(
-            projects:   projects,
-            cinderMode: cinderModeOn,
-            glowPulse:  glowPulse
+            dominantHeat: dominantHeat,
+            cinderMode:   cinderModeOn,
+            glowPulse:    glowPulse
         )
     }
 
@@ -193,20 +192,7 @@ final class CinderNotchPanel: NSObject {
         panel.hasShadow       = true
         panel.collectionBehavior = [.canJoinAllSpaces, .stationary, .ignoresCycle]
 
-        let drawerView = NSHostingView(
-            rootView: NotchDrawerView(
-                projects:   projects,
-                cinderMode: cinderModeOn,
-                onClose:    { [weak self] in self?.closeDrawer() },
-                onOpenApp:  { [weak self] in
-                    self?.closeDrawer()
-                    NotificationCenter.default.post(name: .cinderOpenSettings, object: nil)
-                    NSApp.activate(ignoringOtherApps: true)
-                },
-                onToggleCinderMode: { [weak self] in self?.toggleCinderMode() }
-            )
-        )
-        panel.contentView = drawerView
+        panel.contentView = NSHostingView(rootView: makeDrawerContent())
         drawerPanel = panel
         panel.orderFrontRegardless()
         drawerOpen = true
@@ -219,16 +205,31 @@ final class CinderNotchPanel: NSObject {
                                       display: true)
         }
 
-        // dismiss on click outside
-        NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] _ in
+        // dismiss on click outside — stored so it can be removed in closeDrawer
+        globalMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] _ in
             guard let self, self.drawerOpen else { return }
             self.closeDrawer()
         }
     }
 
+    private func makeDrawerContent() -> NotchDrawerView {
+        NotchDrawerView(
+            projects:           top4,
+            cinderMode:         cinderModeOn,
+            onClose:            { [weak self] in self?.closeDrawer() },
+            onOpenApp:          { [weak self] in
+                self?.closeDrawer()
+                NotificationCenter.default.post(name: .cinderOpenSettings, object: nil)
+                NSApp.activate(ignoringOtherApps: true)
+            },
+            onToggleCinderMode: { [weak self] in self?.toggleCinderMode() }
+        )
+    }
+
     private func closeDrawer() {
         guard let panel = drawerPanel, drawerOpen else { return }
         drawerOpen = false
+        if let m = globalMonitor { NSEvent.removeMonitor(m); globalMonitor = nil }
         NSAnimationContext.runAnimationGroup({ ctx in
             ctx.duration       = 0.18
             ctx.timingFunction = CAMediaTimingFunction(controlPoints: 0.25, 0.46, 0.45, 0.94)
@@ -246,17 +247,7 @@ final class CinderNotchPanel: NSObject {
     private func refreshDrawer() {
         guard let panel = drawerPanel,
               let hosting = panel.contentView as? NSHostingView<NotchDrawerView> else { return }
-        hosting.rootView = NotchDrawerView(
-            projects:   projects,
-            cinderMode: cinderModeOn,
-            onClose:    { [weak self] in self?.closeDrawer() },
-            onOpenApp:  { [weak self] in
-                self?.closeDrawer()
-                NotificationCenter.default.post(name: .cinderOpenSettings, object: nil)
-                NSApp.activate(ignoringOtherApps: true)
-            },
-            onToggleCinderMode: { [weak self] in self?.toggleCinderMode() }
-        )
+        hosting.rootView = makeDrawerContent()
     }
 
     // MARK: - Project Updates
@@ -273,6 +264,9 @@ final class CinderNotchPanel: NSObject {
     @objc private func projectsDidUpdate(_ note: Notification) {
         guard let list = note.userInfo?["projects"] as? [CinderProject] else { return }
         projects = list
+        let sorted = list.sorted { $0.heatLevel.rank < $1.heatLevel.rank }
+        dominantHeat = sorted.first?.heatLevel ?? .ash
+        top4 = Array(sorted.prefix(4))
         refreshBar()
         if drawerOpen { refreshDrawer() }
     }
@@ -281,18 +275,14 @@ final class CinderNotchPanel: NSObject {
 // MARK: - NotchBarView
 
 struct NotchBarView: View {
-    let projects:   [CinderProject]
-    let cinderMode: Bool
-    let glowPulse:  Double
+    let dominantHeat: HeatLevel
+    let cinderMode:   Bool
+    let glowPulse:    Double
 
-    private var dominant: HeatLevel {
-        projects.sorted { $0.heatLevel.rank < $1.heatLevel.rank }.first?.heatLevel ?? .ash
-    }
-
-    private var barColor: Color  { dominant.notchColor }
-    private var barAlpha: Double { dominant.notchAlpha }
+    private var barColor: Color  { dominantHeat.notchColor }
+    private var barAlpha: Double { dominantHeat.notchAlpha }
     private var glowRadius: CGFloat {
-        switch dominant {
+        switch dominantHeat {
         case .blazing: return 14
         case .hot:     return 8
         default:       return 0
@@ -300,7 +290,7 @@ struct NotchBarView: View {
     }
 
     private var animatedGlowOpacity: Double {
-        switch dominant {
+        switch dominantHeat {
         case .blazing: return 0.55 + 0.45 * sin(glowPulse)
         case .hot:     return 0.75
         default:       return 0
@@ -376,11 +366,7 @@ struct NotchDrawerView: View {
     let onOpenApp:          () -> Void
     let onToggleCinderMode: () -> Void
 
-    private var sorted: [CinderProject] {
-        projects.sorted { $0.heatLevel.rank < $1.heatLevel.rank }.prefix(4).map { $0 }
-    }
-
-    private var topProject: CinderProject? { sorted.first }
+    private var topProject: CinderProject? { projects.first }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -424,7 +410,7 @@ struct NotchDrawerView: View {
                     .padding(.top, 12)
                     .padding(.bottom, 6)
 
-                ForEach(sorted, id: \.id) { project in
+                ForEach(projects, id: \.id) { project in
                     ProjectHeatRow(project: project)
                 }
             }

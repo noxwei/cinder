@@ -25,19 +25,22 @@ struct NudgeWidgetView: View {
     @Environment(\.widgetFamily) private var family
     @Environment(\.widgetRenderingMode) private var renderingMode
 
+    private var dayOfYear: Int {
+        Calendar.current.ordinality(of: .day, in: .year, for: .now) ?? 0
+    }
+
     // Pick a cold/cooling project for today — deterministic by day of year
     private var pick: ProjectResponse? {
         let candidates = entry.data.projects.filter {
             $0.heat == "Cold" || $0.heat == "Cooling"
         }
         guard !candidates.isEmpty else { return nil }
-        let day = Calendar.current.ordinality(of: .day, in: .year, for: .now) ?? 0
-        return candidates[day % candidates.count]
+        return candidates[dayOfYear % candidates.count]
     }
 
     // Rotating nudge prompts — tarot-card energy
     private var nudgePrompt: String {
-        let day = Calendar.current.ordinality(of: .day, in: .year, for: .now) ?? 0
+        let day = dayOfYear
         let prompts = [
             "revisit today?",
             "one commit.",

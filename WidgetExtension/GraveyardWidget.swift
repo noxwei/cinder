@@ -26,13 +26,11 @@ struct GraveyardWidgetView: View {
     @Environment(\.widgetFamily) private var family
     @Environment(\.widgetRenderingMode) private var renderingMode
 
-    private var ashCount: Int {
-        entry.data.projects.filter { $0.heat == "Ash" }.count
-    }
-
     private var ashProjects: [ProjectResponse] {
         entry.data.projects.filter { $0.heat == "Ash" }
     }
+
+    private var ashCount: Int { ashProjects.count }
 
     // Shame copy rotates deterministically on day of year
     private var shameText: String {
